@@ -31,7 +31,7 @@ def friendship_status(user_2)
   unless friendship.any?
     return "not_friends"
   else
-    if friendship.first.state == self
+    if friendship.first.state == "active"
       return "friends"
     else  
       if friendship.first.user == self
@@ -41,6 +41,10 @@ def friendship_status(user_2)
       end 
     end     
   end  
+end
+
+def friendship_relation(user_2)
+  Friendship.where(user_id: [self.id,user_2.id], friend_id: [self.id,user_2.id]).first
 end
 
 end
